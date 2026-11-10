@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ps" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1b4b58">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SchoolApp">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>SchoolApp – Amir Hamza Zadran</title>
+<style>
+:root{--bg:#f3f6f9;--card:#fff;--tx:#18222d;--mut:#64748b;--pri:#1b4b58;--bd:#dde3ea;--ok:#1a8f52;--bad:#c93b3b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e141b;--card:#17202b;--tx:#e8eef5;--mut:#92a0b3;--bd:#263241;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e141b;--card:#17202b;--tx:#e8eef5;--mut:#92a0b3;--bd:#263241;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Noto Naskh Arabic","Segoe UI",Tahoma,sans-serif;line-height:1.6}
+.hd{background:var(--pri);color:#fff;text-align:center;padding:20px 14px}
+.hd h1{margin:0;font-size:1.5rem}.hd p{margin:2px 0 0;opacity:.85;font-size:.85rem}
+main{max-width:820px;margin:0 auto;padding:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.tile{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:18px 8px;text-align:center;font:inherit;color:var(--tx);cursor:pointer;box-shadow:0 4px 0 var(--bd)}
+.tile i{display:block;font-style:normal;font-size:1.9rem}
+.stat b{display:block;font-size:1.5rem;color:var(--pri)}.stat span{color:var(--mut);font-size:.8rem}
+@media (prefers-color-scheme:dark){.stat b{color:#7fc4d6}}
+label{display:block;font-size:.85rem;color:var(--mut);margin:8px 0 2px}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn{border:0;background:var(--pri);color:#fff;padding:10px 16px;border-radius:10px;font:inherit;cursor:pointer;margin-top:8px}
+.btn.s{padding:5px 10px;margin:0;background:var(--bd);color:var(--tx)}.btn.bad{background:var(--bad);color:#fff}.btn.back{background:var(--mut)}
+.item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-top:1px solid var(--bd)}
+.item:first-child{border-top:0}small{color:var(--mut)}
+.tag{padding:2px 8px;border-radius:99px;font-size:.75rem;color:#fff;background:var(--ok)}.tag.r{background:var(--bad)}
+.logo{width:84px;height:84px;border-radius:50%;background:var(--pri);color:#fff;display:grid;place-items:center;font-size:2.4rem;margin:0 auto 8px}
+[hidden]{display:none!important}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:none}}
+@keyframes fl{50%{transform:translateY(-6px)}}
+@keyframes bg{0%{background-position:0 50%}100%{background-position:200% 50%}}
+.hd{background:linear-gradient(110deg,var(--pri),#2f8fa8,var(--pri));background-size:200% 100%;animation:bg 9s linear infinite}
+section[data-v]:not([hidden]){animation:up .45s ease both}
+#login{animation:pop .5s ease both}
+.logo{animation:fl 3s ease-in-out infinite}
+.tile{transition:transform .2s,box-shadow .2s;animation:pop .5s ease both}
+.tile:hover{transform:translateY(-4px);box-shadow:0 8px 0 var(--bd)}.tile:active{transform:translateY(3px);box-shadow:0 1px 0 var(--bd)}
+.tile:nth-child(2){animation-delay:.05s}.tile:nth-child(3){animation-delay:.1s}.tile:nth-child(4){animation-delay:.15s}.tile:nth-child(5){animation-delay:.2s}.tile:nth-child(6){animation-delay:.25s}.tile:nth-child(7){animation-delay:.3s}.tile:nth-child(8){animation-delay:.35s}
+.item{animation:up .35s ease both}.stat b{animation:pop .6s ease both}
+.btn{transition:transform .15s,filter .15s}.btn:hover{filter:brightness(1.12)}.btn:active{transform:scale(.95)}
+.btn.s.on{background:var(--ok);color:#fff}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+footer{text-align:center;color:var(--mut);font-size:.8rem;padding:14px 0 28px}
+</style>
+</head>
+<body>
+<div class="hd"><h1 id="hn">🎓 SchoolApp</h1><p>د ښوونځي د زده کوونکو او فیس مدیریت سیستم</p>
+  <button id="inst" class="btn" hidden style="background:#fff;color:#1b4b58;margin-top:8px" onclick="if(dp){dp.prompt();dp=null}">📲 Install App</button></div>
+<main>
+<!-- LOGIN -->
+<section id="login" class="card" style="max-width:360px;margin:20px auto;text-align:center">
+  <div class="logo">🏫</div><h2 style="margin:4px 0">ښوونځي ادارې ته ننوتل</h2>
+  <label style="text-align:right">Password</label><input id="pw" type="password" placeholder="پټنوم">
+  <button class="btn" id="lg" style="width:100%">Login 🔐</button>
+  <p id="lerr" style="color:var(--bad);margin:6px 0 0" hidden>پټنوم ناسم دی</p>
+  <small>لومړنی پټنوم: 1234 (په Settings کې یې بدل کړئ)</small>
+</section>
+
+<!-- APP -->
+<div id="app" hidden>
+<section data-v="home">
+  <div class="card" style="text-align:center"><div class="logo">🏫</div><h2 style="margin:0">SchoolApp</h2><small>✦ پوهه، نظم او راتلونکی ✦</small></div>
+  <div class="card"><div class="grid" id="stats"></div></div>
+  <div class="grid">
+    <button class="tile" data-go="add"><i>🧑‍🎓</i>نوی زده کوونکی</button>
+    <button class="tile" data-go="list"><i>📋</i>ټول زده کوونکي</button>
+    <button class="tile" data-go="att"><i>✅</i>حاضري</button>
+    <button class="tile" data-go="grd"><i>📝</i>نمرې</button>
+    <button class="tile" data-go="exp"><i>🧾</i>مصارف</button>
+    <button class="tile" data-go="rep"><i>📊</i>راپورونه</button>
+    <button class="tile" data-go="set"><i>⚙️</i>Settings</button>
+    <button class="tile" data-go="abt"><i>👨‍💻</i>About / Developer</button>
+  </div>
+</section>
+
+<section data-v="add" hidden>
+  <div class="card"><h3 id="ftitle">🧑‍🎓 نوی زده کوونکی</h3>
+    <input type="hidden" id="eid">
+    <label>د زده کوونکي نوم *</label><input id="n">
+    <div class="f2"><div><label>د پلار نوم *</label><input id="fa"></div><div><label>موبایل نمبر</label><input id="ph" inputmode="tel"></div></div>
+    <div class="f2"><div><label>ټولګی *</label><select id="cl"><option>۷</option><option>۸</option><option>۹</option><option>۱۰</option><option>۱۱</option><option>۱۲</option></select></div><div><label>د شمولیت نېټه *</label><input id="dt" type="date"></div></div>
+    <div class="f2"><div><label>ټول فیس *</label><input id="fee" type="number" min="0"></div><div><label>ورکړل شوی فیس</label><input id="paid" type="number" min="0" value="0"></div></div>
+    <label>یادښت</label><textarea id="nt" rows="2"></textarea>
+    <button class="btn" id="save">💾 ثبت</button> <button class="btn back" data-go="home">← بیرته</button>
+  </div>
+</section>
+
+<section data-v="list" hidden>
+  <div class="card"><h3>📋 ټول زده کوونکي</h3><input id="q" placeholder="🔎 لټون (نوم، پلار، ټولګی)">
+    <label>حالت</label><select id="stf"><option value="">ټول</option><option value="p">بشپړ فیس</option><option value="r">باقیه لري</option></select></div>
+  <div class="card" id="sl"></div><button class="btn back" data-go="home">← بیرته</button>
+</section>
+
+<section data-v="att" hidden>
+  <div class="card"><h3>✅ ورځنۍ حاضري</h3>
+    <div class="f2"><div><label>نېټه</label><input id="ad" type="date"></div><div><label>ټولګی</label><select id="acl"></select></div></div></div>
+  <div class="card"><div class="grid" id="as"></div></div>
+  <div class="card" id="al"></div><button class="btn back" data-go="home">← بیرته</button>
+</section>
+
+<section data-v="grd" hidden>
+  <div class="card"><h3>📝 د زده کوونکو نمرې</h3>
+    <div class="f2"><div><label>مضمون</label><input id="gs" value="ریاضي"></div><div><label>ټولګی</label><select id="gcl"></select></div></div></div>
+  <div class="card"><div class="grid" id="gsum"></div></div>
+  <div class="card" id="gl"></div><button class="btn back" data-go="home">← بیرته</button>
+</section>
+
+<section data-v="exp" hidden>
+  <div class="card"><h3>🧾 د ښوونځي مصارف</h3>
+    <div class="f2"><div><label>نېټه *</label><input id="ed" type="date"></div><div><label>مبلغ *</label><input id="ea" type="number" min="0"></div></div>
+    <label>د مصرف نوم *</label><input id="en"><label>یادښت</label><input id="eno">
+    <button class="btn" id="esv">💾 ثبت</button></div>
+  <div class="card" id="el"></div><button class="btn back" data-go="home">← بیرته</button>
+</section>
+
+<section data-v="rep" hidden>
+  <div class="card"><h3>📊 Account Summary</h3>
+    <div class="f2"><div><label>From Date</label><input id="r1" type="date"></div><div><label>To Date</label><input id="r2" type="date"></div></div>
+    <button class="btn" id="rb">Show Summary</button></div>
+  <div class="card"><div class="grid" id="rs"></div></div><button class="btn back" data-go="home">← بیرته</button>
+</section>
+
+<section data-v="set" hidden>
+  <div class="card"><h3>🏫 د ښوونځي نوم</h3><input id="sch" placeholder="د ښوونځي نوم ولیکئ"></div>
+  <div class="card"><h3>🎨 Themes & Appearance</h3>
+    <label>App Color Theme</label><select id="th"><option value="#1b4b58">Teal</option><option value="#1d5fd1">Ocean Blue</option><option value="#1a8f52">Emerald Green</option><option value="#7c3aed">Bright Purple</option><option value="#d9467a">Soft Rose</option><option value="#c98a0b">Golden Amber</option><option value="#475569">Slate Gray</option></select>
+    <label><input type="checkbox" id="dk" style="width:auto"> 🌙 Dark Mode</label></div>
+  <div class="card"><h3>🔑 Change Password</h3><input id="np" type="password" placeholder="نوی پټنوم"><button class="btn" id="cp">بدلول</button></div>
+  <div class="card"><h3>💾 Backup / Restore</h3><small>Backup: متن کاپي کړئ او خوندي یې کړئ. Restore: متن دلته پیسټ کړئ.</small>
+    <textarea id="bk" rows="4"></textarea><button class="btn" id="bb">Backup</button> <button class="btn" id="br">Restore</button></div>
+  <div class="card"><button class="btn bad" id="clr">Clear All Records</button> <button class="btn back" id="lo">Logout</button></div>
+  <button class="btn back" data-go="home">← بیرته</button>
+</section>
+
+<section data-v="abt" hidden>
+  <div class="card" style="text-align:center"><div class="logo">👨‍💻</div>
+    <h2 style="margin:0">Amir Hamza Zadran</h2><p>Web Developer & Database Systems Engineer</p>
+    <small>Bachelor of Computer Science · Database Systems</small><p>SchoolApp د ښوونځي لپاره د Amir Hamza Zadran له خوا جوړ شوی.</p>
+    <button class="btn back" data-go="home">← بیرته</button></div>
+</section>
+</div>
+<footer>✦ Created by Amir Hamza Zadran ✦</footer>
+</main>
+
+<script>
+(function(){
+var K="schoolapp-v2",D={pw:"1234",color:"#1b4b58",dark:false,sch:"",st:[],ex:[],att:{},gr:{}};
+try{var r=localStorage.getItem(K);if(r)D=Object.assign(D,JSON.parse(r))}catch(e){}
+function save(){try{localStorage.setItem(K,JSON.stringify(D))}catch(e){}}
+var $=function(i){return document.getElementById(i)},today=new Date().toISOString().slice(0,10);
+function esc(t){var d=document.createElement("div");d.textContent=t==null?"":t;return d.innerHTML}
+function money(n){return (+n||0).toLocaleString("en")+" AFN"}
+function theme(){$("hn").textContent="🎓 "+(D.sch||"SchoolApp");$("sch").value=D.sch||"";document.documentElement.style.setProperty("--pri",D.color);document.documentElement.setAttribute("data-theme",D.dark?"dark":"light");$("th").value=D.color;$("dk").checked=D.dark}
+function go(v){document.querySelectorAll("[data-v]").forEach(function(s){s.hidden=s.dataset.v!==v});if(v==="home")stats();if(v==="list")list();if(v==="exp")exps();if(v==="att")att();if(v==="grd")grd();if(v==="add"&&!$("eid").value){$("dt").value=today}scrollTo(0,0)}
+function stats(){var f=0,p=0;D.st.forEach(function(s){f+=+s.fee;p+=+s.paid});var e=D.ex.reduce(function(a,b){return a+ +b.amt},0);
+$("stats").innerHTML=[["زده کوونکي",D.st.length],["ټول فیس",money(f)],["ورکړل شوی",money(p)],["باقیه",money(f-p)],["مصارف",money(e)]].map(function(x){return '<div class="stat"><b>'+x[1]+'</b><span>'+x[0]+'</span></div>'}).join("")}
+function list(){var q=$("q").value.trim().toLowerCase(),f=$("stf").value;
+var a=D.st.filter(function(s){var rem=s.fee-s.paid;return (!q||(s.n+" "+s.fa+" "+s.cl).toLowerCase().indexOf(q)>-1)&&(!f||(f==="p"?rem<=0:rem>0))}).slice(0,50);
+$("sl").innerHTML=a.length?a.map(function(s){var rem=s.fee-s.paid;return '<div class="item"><div><b>'+esc(s.n)+'</b> <small>د '+esc(s.fa)+' زوی/لور</small><br><small>ټولګی '+esc(s.cl)+' · '+esc(s.dt)+' · '+esc(s.ph)+'</small><br><span class="tag'+(rem>0?" r":"")+'">'+(rem>0?"باقیه "+money(rem):"بشپړ")+'</span></div><div><button class="btn s" data-ed="'+s.id+'">سمون</button> <button class="btn s bad" data-dl="'+s.id+'">حذف</button></div></div>'}).join(""):"<small>تر اوسه زده کوونکی نشته</small>"}
+function exps(){$("ed").value=$("ed").value||today;$("el").innerHTML=D.ex.length?D.ex.slice().reverse().map(function(x){return '<div class="item"><div><b>'+esc(x.n)+'</b> · '+money(x.amt)+'<br><small>'+esc(x.d)+' '+esc(x.no)+'</small></div><button class="btn s bad" data-de="'+x.id+'">حذف</button></div>'}).join(""):"<small>تر اوسه مصرف نشته</small>"}
+function clear(){["eid","n","fa","ph","fee","nt"].forEach(function(i){$(i).value=""});$("paid").value=0;$("ftitle").textContent="🧑‍🎓 نوی زده کوونکی"}
+
+$("lg").onclick=function(){if($("pw").value===D.pw){$("login").hidden=true;$("app").hidden=false;$("pw").value="";go("home")}else $("lerr").hidden=false};
+$("pw").onkeydown=function(e){if(e.key==="Enter")$("lg").click()};
+document.addEventListener("click",function(e){var t=e.target.closest("button");if(!t)return;
+if(t.dataset.go){if(t.dataset.go==="add")clear();go(t.dataset.go)}
+if(t.dataset.dl&&confirm("حذف شي؟")){D.st=D.st.filter(function(s){return s.id!=t.dataset.dl});save();list()}
+if(t.dataset.de&&confirm("حذف شي؟")){D.ex=D.ex.filter(function(s){return s.id!=t.dataset.de});save();exps()}
+if(t.dataset.ed){var s=D.st.find(function(x){return x.id==t.dataset.ed});go("add");$("eid").value=s.id;$("n").value=s.n;$("fa").value=s.fa;$("ph").value=s.ph;$("cl").value=s.cl;$("dt").value=s.dt;$("fee").value=s.fee;$("paid").value=s.paid;$("nt").value=s.nt;$("ftitle").textContent="✏️ سمون"}});
+$("save").onclick=function(){var n=$("n").value.trim(),fa=$("fa").value.trim();if(!n||!fa||$("fee").value===""){alert("اړین ځایونه ډک کړئ");return}
+var o={id:$("eid").value||Date.now(),n:n,fa:fa,ph:$("ph").value,cl:$("cl").value,dt:$("dt").value,fee:+$("fee").value,paid:+$("paid").value||0,nt:$("nt").value};
+var i=D.st.findIndex(function(x){return x.id==o.id});if(i>-1)D.st[i]=o;else D.st.push(o);save();clear();go("list")};
+$("q").oninput=list;$("stf").onchange=list;
+$("esv").onclick=function(){if(!$("en").value.trim()||!$("ea").value||!$("ed").value){alert("اړین ځایونه ډک کړئ");return}
+D.ex.push({id:Date.now(),d:$("ed").value,n:$("en").value.trim(),amt:+$("ea").value,no:$("eno").value});$("en").value=$("ea").value=$("eno").value="";save();exps()};
+$("rb").onclick=function(){var a=$("r1").value,b=$("r2").value,inr=function(d){return(!a||d>=a)&&(!b||d<=b)};
+var S=D.st.filter(function(s){return inr(s.dt)}),E=D.ex.filter(function(x){return inr(x.d)});
+var f=0,p=0;S.forEach(function(s){f+=+s.fee;p+=+s.paid});var e=E.reduce(function(x,y){return x+ +y.amt},0);
+$("rs").innerHTML=[["د زده کوونکو شمېر",S.length],["ټول فیس",money(f)],["ورکړل شوی",money(p)],["باقیه",money(f-p)],["ټول مصارف",money(e)],["خالص (ورکړل − مصارف)",money(p-e)]].map(function(x){return '<div class="stat"><b>'+x[1]+'</b><span>'+x[0]+'</span></div>'}).join("")};
+var CL=["۷","۸","۹","۱۰","۱۱","۱۲"];
+["acl","gcl"].forEach(function(i){$(i).innerHTML='<option value="">ټول ټولګي</option>'+CL.map(function(c){return '<option>'+c+'</option>'}).join("")});
+$("ad").value=today;
+function att(){var d=$("ad").value||today,c=$("acl").value,a=D.att[d]||{},L=D.st.filter(function(s){return !c||s.cl===c}),p=0,x=0;
+L.forEach(function(s){if(a[s.id]==="p")p++;if(a[s.id]==="x")x++});
+$("as").innerHTML=[["حاضر",p],["غایب",x],["نه دي ثبت",L.length-p-x]].map(function(z){return '<div class="stat"><b>'+z[1]+'</b><span>'+z[0]+'</span></div>'}).join("");
+$("al").innerHTML=L.length?L.map(function(s){return '<div class="item"><div><b>'+esc(s.n)+'</b><br><small>ټولګی '+esc(s.cl)+'</small></div><div><button class="btn s'+(a[s.id]==="p"?" on":"")+'" data-a="'+s.id+'" data-v="p">حاضر</button> <button class="btn s'+(a[s.id]==="x"?" bad":"")+'" data-a="'+s.id+'" data-v="x">غایب</button></div></div>'}).join(""):"<small>زده کوونکی نشته</small>"}
+function grd(){var sj=$("gs").value.trim()||"عمومي",c=$("gcl").value,L=D.st.filter(function(s){return !c||s.cl===c}),t=0,n=0,hi=0;
+L.forEach(function(s){var v=(D.gr[s.id]||{})[sj];if(v!=null){t+=v;n++;if(v>hi)hi=v}});
+$("gsum").innerHTML=[["منځنۍ نمره",n?Math.round(t/n):"–"],["لوړه نمره",n?hi:"–"],["ثبت شوي",n+" / "+L.length]].map(function(z){return '<div class="stat"><b>'+z[1]+'</b><span>'+z[0]+'</span></div>'}).join("");
+$("gl").innerHTML=L.length?L.map(function(s){var v=(D.gr[s.id]||{})[sj];return '<div class="item"><div><b>'+esc(s.n)+'</b><br><small>ټولګی '+esc(s.cl)+'</small></div><input type="number" min="0" max="100" style="max-width:90px" data-g="'+s.id+'" value="'+(v==null?"":v)+'" placeholder="0-100"></div>'}).join(""):"<small>زده کوونکی نشته</small>"}
+$("ad").onchange=att;$("acl").onchange=att;$("gs").oninput=grd;$("gcl").onchange=grd;
+document.addEventListener("click",function(e){var t=e.target.closest("button");if(t&&t.dataset.a){var d=$("ad").value||today;D.att[d]=D.att[d]||{};D.att[d][t.dataset.a]=t.dataset.v;save();att()}});
+document.addEventListener("change",function(e){var t=e.target;if(t.dataset&&t.dataset.g){var sj=$("gs").value.trim()||"عمومي";D.gr[t.dataset.g]=D.gr[t.dataset.g]||{};if(t.value==="")delete D.gr[t.dataset.g][sj];else D.gr[t.dataset.g][sj]=Math.max(0,Math.min(100,+t.value));save();grd()}});
+$("sch").oninput=function(){D.sch=this.value;$("hn").textContent="🎓 "+(D.sch||"SchoolApp");save()};
+$("th").onchange=function(){D.color=this.value;save();theme()};
+$("dk").onchange=function(){D.dark=this.checked;save();theme()};
+$("cp").onclick=function(){if($("np").value.length<4){alert("لږ تر لږه ۴ توري");return}D.pw=$("np").value;$("np").value="";save();alert("پټنوم بدل شو")};
+$("bb").onclick=function(){$("bk").value=JSON.stringify(D);$("bk").select()};
+$("br").onclick=function(){try{var o=JSON.parse($("bk").value);if(!o.st||!o.ex)throw 0;D=Object.assign(D,o);save();theme();alert("Restore بشپړ شو")}catch(x){alert("ناسم Backup")}};
+$("clr").onclick=function(){if(confirm("ټول ریکارډونه حذف شي؟")){D.st=[];D.ex=[];D.att={};D.gr={};save();alert("حذف شول")}};
+$("lo").onclick=function(){$("app").hidden=true;$("login").hidden=false};
+theme();
+})();
+</script>
+<script>
+if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}
+var dp=null;window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;var b=document.getElementById("inst");if(b)b.hidden=false});
+window.addEventListener("appinstalled",function(){var b=document.getElementById("inst");if(b)b.hidden=true});
+</script>
+</body>
+</html>
